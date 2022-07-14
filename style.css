@@ -1,0 +1,102 @@
+:root {
+    --clr-background: hsl(0 0% 0%);
+    --clr-foreground: hsl(0 0% 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --clr-foreground: hsl(0 0% 0%);
+        --clr-background: hsl(0 0% 100%) !important;
+    }
+}
+
+.light-theme {
+    --clr-background: hsl(0 0% 0%);
+    --clr-foreground: hsl(0 0% 100%);
+}
+
+.dark-theme {
+    --clr-background: hsl(0 0% 100%);
+    --clr-foreground: hsl(0 0% 0%);
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--clr-background);
+    color: var(--clr-foreground);
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#theme-toggle {
+    cursor: pointer;
+    border: 0;
+    background: 0;
+    opacity: 0.8;
+    padding: 4rem;
+    border-radius: 50%;
+    position: relative;
+}
+
+#theme-toggle svg {
+    fill: var(--clr-foreground)
+}
+
+#theme-toggle::after {
+    content: attr(aria-label);
+    position: absolute;
+    color: var(--clr-background);
+    background: var(--clr-foreground);
+    width: max-content;
+    font-size: 1.5rem;
+    left: 0;
+    right: 0;
+    top: 95%;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    border-radius: 0.125em;
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: top;
+    transition: transform 0ms linear, opacity 100ms linear; 
+}
+
+#theme-toggle:hover,
+#theme-toggle:focus {
+    outline: 0;
+    opacity: 1;
+    background: hsl(0 0% 50% / 0.15);
+
+}
+
+#theme-toggle:hover::after,
+#theme-toggle:focus::after {
+    opacity: 0.4;
+    transform: scale(0.8);
+    transition: transform 70ms linear, opacity 70ms linear;
+}
+
+.toggle-circle {
+    transition: transform 250ms ease-out;
+}
+
+.light-theme .toggle-circle {
+    transform: translateX(-15%);
+}
+.toggle-sun {
+    transform-origin: center;
+     transition: transform 750ms ease;
+} 
+.light-theme .toggle-sun {
+    transform: rotate(0.5turn);
+}
